@@ -69,9 +69,9 @@ const FeaturedProject = () => {
                 </div>
               </div>
 
-              <button className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 self-start">
+              <a href="https://agro-care-ai-final.vercel.app" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 self-start">
                 View Project <ExternalLink size={16} />
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>
