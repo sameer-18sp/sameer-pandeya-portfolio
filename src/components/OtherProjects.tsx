@@ -4,28 +4,18 @@ import { Github, ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "Weather Dashboard",
-    description: "A real-time weather app with beautiful visualizations and location-based forecasts.",
-    stack: ["React.js", "API", "Tailwind"],
+    title: "Shangri La Edu Park",
+    description: "A professional consultancy website for Shangri La Edu Park, providing educational consulting services with a modern and clean interface.",
+    stack: ["React.js", "Tailwind", "Vercel"],
     github: "#",
+    live: "https://shangrila-launchpad.vercel.app",
   },
   {
-    title: "E-Commerce Platform",
-    description: "Full-stack e-commerce solution with cart, payments, and admin dashboard.",
-    stack: ["Node.js", "MongoDB", "React.js"],
+    title: "BigBull Fitness Gym & Zumba",
+    description: "A dynamic gym and fitness website for BigBull Fitness Gym and Zumba, showcasing services, schedules, and membership plans.",
+    stack: ["React.js", "Tailwind", "JavaScript"],
     github: "#",
-  },
-  {
-    title: "Chat Application",
-    description: "Real-time messaging app with rooms, typing indicators, and message history.",
-    stack: ["Socket.io", "Express", "React.js"],
-    github: "#",
-  },
-  {
-    title: "Portfolio Website",
-    description: "A modern, animated portfolio built with React and Framer Motion.",
-    stack: ["React.js", "Tailwind", "Framer Motion"],
-    github: "#",
+    live: "#",
   },
 ];
 
@@ -66,7 +56,7 @@ const OtherProjects = () => {
                     <a href={project.github} className="text-muted-foreground hover:text-primary transition-colors">
                       <Github size={18} />
                     </a>
-                    <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
+                    <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-colors">
                       <ExternalLink size={18} />
                     </a>
                   </div>
