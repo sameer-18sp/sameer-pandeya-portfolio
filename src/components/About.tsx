@@ -1,6 +1,36 @@
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { GraduationCap, Briefcase, Award, Youtube, Instagram } from "lucide-react";
+
+const stats = [
+  { value: "9.001", label: "CGPA", sub: "BE CSE" },
+  { value: "SAP", label: "STAR Scholar", sub: "Currently" },
+  { value: "BITS", label: "M.Tech SE", sub: "Pilani" },
+];
+
+const highlights = [
+  {
+    icon: Briefcase,
+    title: "SAP STAR Scholar",
+    sub: "Currently at SAP Labs India",
+    color: "text-blue-500",
+    bg: "bg-blue-500/8",
+  },
+  {
+    icon: GraduationCap,
+    title: "M.Tech, Software Engineering",
+    sub: "BITS Pilani · In Progress",
+    color: "text-violet-500",
+    bg: "bg-violet-500/8",
+  },
+  {
+    icon: Award,
+    title: "BE CSE · CGPA 9.001 / 10",
+    sub: "First Class with Distinction",
+    color: "text-emerald-500",
+    bg: "bg-emerald-500/8",
+  },
+];
 
 const About = () => {
   const ref = useRef(null);
@@ -22,7 +52,8 @@ const About = () => {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left: Story */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
@@ -30,47 +61,103 @@ const About = () => {
             className="space-y-5"
           >
             <p className="text-muted-foreground leading-relaxed">
-              I'm a <span className="text-foreground font-medium">6th semester Computer Science Engineering</span> student 
-              with a strong passion for building technology that matters. My interests span across 
-              <span className="text-primary"> AI, Machine Learning</span>, and 
-              <span className="text-primary"> Full Stack Development</span>.
+              I'm a <span className="text-foreground font-semibold">Computer Science Engineer</span> who
+              graduated with a CGPA of{" "}
+              <span className="text-primary font-semibold">9.001 / 10</span> and a deep passion for
+              building technology that creates real impact.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              Currently, I'm building <span className="text-foreground font-medium">AgroCare AI</span> — an AI-powered 
-              agriculture disease detection system that helps farmers identify and treat crop diseases early, 
-              potentially saving millions in crop losses.
+              I've joined <span className="text-foreground font-semibold">SAP</span> as a{" "}
+              <span className="text-primary font-semibold">STAR Scholar</span> — a highly competitive
+              program that combines hands-on enterprise software development with academic mentorship.
+              Simultaneously, I'm pursuing my{" "}
+              <span className="text-foreground font-semibold">M.Tech in Software Engineering</span> from{" "}
+              <span className="text-primary font-semibold">BITS Pilani</span>, one of India's most
+              prestigious institutes.
             </p>
             <p className="text-muted-foreground leading-relaxed">
-              I believe in solving real-world problems with elegant, scalable technology. 
-              Every line of code I write is aimed at creating meaningful impact.
+              My interests span{" "}
+              <span className="text-primary">AI & Machine Learning</span>,{" "}
+              <span className="text-primary">Full Stack Development</span>, and{" "}
+              <span className="text-primary">enterprise-grade software systems</span>. I write purposeful
+              code that solves real problems at scale.
             </p>
+
+            {/* Hobby card */}
+            <div className="glass-card p-5 mt-2">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-base">✈️</span>
+                <h4 className="font-display font-semibold text-foreground text-sm">Beyond the Code</h4>
+              </div>
+              <p className="text-muted-foreground text-sm leading-relaxed mb-4">
+                I'm also a travel vlogger! I run a YouTube channel called{" "}
+                <span className="text-foreground font-medium">Wandering Nepali</span> where I share
+                adventures and stories from Nepal and around the world.
+              </p>
+              <div className="flex flex-wrap items-center gap-3">
+                <a
+                  href="https://www.youtube.com/@WanderingNepali"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 hover:bg-red-500/20 transition-colors"
+                >
+                  <Youtube size={12} /> Wandering Nepali
+                </a>
+                <a
+                  href="https://www.instagram.com/sameerpandeya_sp1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full bg-pink-500/10 text-pink-500 border border-pink-500/20 hover:bg-pink-500/20 transition-colors"
+                >
+                  <Instagram size={12} /> @sameerpandeya_sp1
+                </a>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Geometric abstract pattern */}
+          {/* Right: Stats + Highlights */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center"
+            className="space-y-4"
           >
-            <div className="relative w-72 h-72 md:w-80 md:h-80">
-              {/* Abstract geometric shapes */}
-              <div className="absolute inset-0 rounded-2xl border border-primary/20 rotate-6 animate-float" />
-              <div className="absolute inset-4 rounded-2xl border border-secondary/20 -rotate-3" style={{ animationDelay: "1s" }} />
-              <div className="absolute inset-8 rounded-2xl glass-card flex items-center justify-center">
-                <div className="text-center space-y-3">
-                  <div className="text-5xl font-display font-bold glow-text">CS</div>
-                  <div className="text-xs text-muted-foreground tracking-widest uppercase">Engineering</div>
-                  <div className="flex gap-2 justify-center mt-4">
-                    {["AI", "ML", "Web"].map((tag) => (
-                      <span key={tag} className="tech-tag text-[10px]">{tag}</span>
-                    ))}
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {stats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + i * 0.1 }}
+                  className="glass-card p-4 text-center"
+                >
+                  <div className="text-2xl font-display font-bold glow-text">{stat.value}</div>
+                  <div className="text-xs font-semibold text-foreground mt-1">{stat.label}</div>
+                  <div className="text-xs text-muted-foreground">{stat.sub}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="space-y-3">
+              {highlights.map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={inView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.65 + i * 0.12 }}
+                  className="glass-card p-4 flex items-center gap-4 hover:border-primary/30 transition-all duration-300 cursor-default"
+                >
+                  <div
+                    className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${item.bg} ${item.color}`}
+                  >
+                    <item.icon size={20} />
                   </div>
-                </div>
-              </div>
-              {/* Floating dots */}
-              <div className="absolute -top-3 -right-3 w-3 h-3 rounded-full bg-primary animate-pulse_glow" />
-              <div className="absolute -bottom-2 -left-2 w-2 h-2 rounded-full bg-secondary animate-pulse_glow" style={{ animationDelay: "1s" }} />
+                  <div>
+                    <div className="text-sm font-semibold text-foreground">{item.title}</div>
+                    <div className="text-xs text-muted-foreground">{item.sub}</div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
         </div>

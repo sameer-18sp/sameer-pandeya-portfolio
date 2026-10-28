@@ -1,26 +1,42 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { Monitor, Server, Brain, Database, Wrench } from "lucide-react";
 
 const skillCategories = [
   {
     title: "Frontend",
-    skills: ["React.js", "HTML5", "CSS3", "Tailwind", "JavaScript"],
-    icon: "🎨",
+    icon: Monitor,
+    skills: ["React.js", "TypeScript", "HTML5", "CSS3", "Tailwind CSS"],
+    color: "text-cyan-500",
+    bg: "bg-cyan-500/10",
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express.js"],
-    icon: "⚙️",
+    title: "Backend & APIs",
+    icon: Server,
+    skills: ["Node.js", "Express.js", "Python", "REST APIs"],
+    color: "text-green-500",
+    bg: "bg-green-500/10",
+  },
+  {
+    title: "AI & Machine Learning",
+    icon: Brain,
+    skills: ["TensorFlow", "Keras", "CNN", "Computer Vision", "Scikit-learn"],
+    color: "text-violet-500",
+    bg: "bg-violet-500/10",
   },
   {
     title: "Database",
-    skills: ["MongoDB", "MySQL"],
-    icon: "🗄️",
+    icon: Database,
+    skills: ["MongoDB", "MySQL", "PostgreSQL"],
+    color: "text-orange-500",
+    bg: "bg-orange-500/10",
   },
   {
-    title: "AI & ML",
-    skills: ["Python", "Machine Learning Basics", "CNN (Computer Vision)"],
-    icon: "🧠",
+    title: "Tools & DevOps",
+    icon: Wrench,
+    skills: ["Git", "GitHub", "Vercel", "Linux", "Postman"],
+    color: "text-blue-500",
+    bg: "bg-blue-500/10",
   },
 ];
 
@@ -43,28 +59,35 @@ const Skills = () => {
           </h2>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((cat, i) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass-card-hover p-6 group"
-            >
-              <div className="text-3xl mb-4">{cat.icon}</div>
-              <h3 className="text-lg font-display font-semibold mb-4 text-foreground group-hover:text-primary transition-colors">
-                {cat.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cat.skills.map((skill) => (
-                  <span key={skill} className="tech-tag text-xs">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
+          {skillCategories.map((cat, i) => {
+            const Icon = cat.icon;
+            return (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: i * 0.08 }}
+                className="glass-card-hover p-6 group"
+              >
+                <div
+                  className={`w-10 h-10 rounded-lg ${cat.bg} ${cat.color} flex items-center justify-center mb-4`}
+                >
+                  <Icon size={20} />
+                </div>
+                <h3 className="text-sm font-display font-semibold mb-4 text-foreground group-hover:text-primary transition-colors">
+                  {cat.title}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill) => (
+                    <span key={skill} className="tech-tag text-xs">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
