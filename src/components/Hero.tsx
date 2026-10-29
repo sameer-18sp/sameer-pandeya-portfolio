@@ -1,75 +1,115 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Youtube, Mail, Twitter } from "lucide-react";
+import { Github, Linkedin, Youtube, Mail, Instagram, ArrowRight } from "lucide-react";
 import profilePhoto from "@/assets/sameer-profile.jpg";
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] as const } },
+};
 
 const socials = [
   { href: "https://github.com/sameer-18sp", icon: Github, label: "GitHub" },
   { href: "https://www.linkedin.com/in/sameer-sp18", icon: Linkedin, label: "LinkedIn" },
   { href: "https://www.youtube.com/@WanderingNepali", icon: Youtube, label: "YouTube" },
+  { href: "https://www.instagram.com/sameerpandeya_sp1", icon: Instagram, label: "Instagram" },
   { href: "mailto:pandeyasameer4@gmail.com", icon: Mail, label: "Email" },
 ];
 
 const Hero = () => (
-  <section id="hero" className="pt-32 pb-16">
-    <div className="max-w-2xl mx-auto px-6">
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-      >
-        {/* Avatar + name row */}
-        <div className="flex items-center gap-4 mb-8">
-          <img
-            src={profilePhoto}
-            alt="Sameer Pandeya"
-            className="w-14 h-14 rounded-full object-cover border border-border"
-          />
-          <div>
-            <h1 className="text-lg font-semibold text-foreground leading-tight">Sameer Pandeya</h1>
-            <p className="text-sm text-muted-foreground">Software Engineer &amp; Traveler</p>
-          </div>
-        </div>
+  <section id="hero" className="min-h-[90vh] flex items-center pt-20 pb-20">
+    <div className="max-w-5xl mx-auto px-6 w-full">
+      <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16 lg:gap-24">
 
-        {/* Bio */}
-        <div className="space-y-4 mb-8">
-          <p className="text-foreground/80 leading-relaxed">
-            I build AI-powered systems and full-stack applications. Currently a STAR Scholar at{" "}
-            <span className="text-foreground font-medium">SAP Labs India</span>, pursuing M.Tech
-            at <span className="text-foreground font-medium">BITS Pilani</span>, and documenting
+        {/* Left: Content */}
+        <motion.div
+          className="flex-1 min-w-0"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.p variants={fadeUp} className="text-sm text-muted-foreground mb-5 tracking-wider uppercase">
+            Based in Bengaluru, India
+          </motion.p>
+
+          <motion.h1
+            variants={fadeUp}
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.04] tracking-tight text-foreground mb-5"
+          >
+            Sameer
+            <br />
+            Pandeya.
+          </motion.h1>
+
+          <motion.p variants={fadeUp} className="text-lg md:text-xl text-muted-foreground mb-7 font-medium">
+            Software Engineer &amp; Travel Vlogger
+          </motion.p>
+
+          <motion.p variants={fadeUp} className="text-base text-muted-foreground leading-relaxed mb-9 max-w-lg">
+            I build AI-powered systems and full-stack applications at{" "}
+            <span className="text-foreground font-medium">SAP Labs India</span>, study at{" "}
+            <span className="text-foreground font-medium">BITS Pilani</span>, and document
             Himalayan adventures on{" "}
             <a
               href="https://www.youtube.com/@WanderingNepali"
               target="_blank"
               rel="noopener noreferrer"
-              className="prose-link"
+              className="prose-link font-medium"
             >
               Wandering Nepali
-            </a>
-            .
-          </p>
-          <p className="text-muted-foreground leading-relaxed">
-            Graduated B.E. Computer Science from CMR Institute of Technology, Bengaluru
-            (VTU). I care about clean code, meaningful products, and the stories between
-            the lines of a commit history.
-          </p>
-        </div>
+            </a>.
+          </motion.p>
 
-        {/* Social links */}
-        <div className="flex flex-wrap gap-4">
-          {socials.map(({ href, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target={href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="icon-link"
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-10">
+            <button
+              onClick={() => document.querySelector("#work")?.scrollIntoView({ behavior: "smooth" })}
+              className="btn-solid"
             >
-              <Icon size={14} />
-              {label}
+              See my work <ArrowRight size={14} />
+            </button>
+            <a href="mailto:pandeyasameer4@gmail.com" className="btn-outline">
+              Get in touch
             </a>
-          ))}
-        </div>
-      </motion.div>
+          </motion.div>
+
+          <motion.div variants={fadeUp} className="flex flex-wrap gap-5">
+            {socials.map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="icon-link"
+              >
+                <Icon size={15} />
+                {label}
+              </a>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Right: Photo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.65, ease: [0.25, 0.1, 0.25, 1], delay: 0.15 }}
+          className="flex-shrink-0"
+        >
+          <div className="relative group">
+            <img
+              src={profilePhoto}
+              alt="Sameer Pandeya"
+              className="w-48 h-60 sm:w-56 sm:h-72 md:w-64 md:h-80 lg:w-72 lg:h-96 object-cover object-top rounded-2xl border border-border transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+            <div className="absolute inset-0 rounded-2xl bg-foreground/0 group-hover:bg-foreground/[0.02] transition-colors duration-300" />
+          </div>
+        </motion.div>
+
+      </div>
     </div>
   </section>
 );

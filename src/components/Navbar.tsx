@@ -33,7 +33,7 @@ const Navbar = () => {
         scrolled ? "nav-blur border-b border-border" : "bg-transparent"
       }`}
     >
-      <div className="max-w-2xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
         <button
           onClick={() => go("#hero")}
           className="text-sm font-semibold text-foreground hover:opacity-70 transition-opacity"
@@ -78,7 +78,7 @@ const Navbar = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden nav-blur border-b border-border overflow-hidden"
           >
-            <div className="max-w-2xl mx-auto px-6 py-5 flex flex-col gap-4">
+            <div className="max-w-5xl mx-auto px-6 py-5 flex flex-col gap-4">
               {links.map((l) => (
                 <button
                   key={l.href}

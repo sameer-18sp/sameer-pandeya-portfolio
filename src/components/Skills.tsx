@@ -15,24 +15,28 @@ const Skills = () => {
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
   return (
-    <section id="skills" className="py-14 border-t border-border" ref={ref}>
-      <div className="max-w-2xl mx-auto px-6">
+    <section id="skills" className="py-20 border-t border-border" ref={ref}>
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 0.4 }}
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.45 }}
         >
-          <p className="section-title">Skills</p>
+          <p className="section-label">Skills</p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-10">Technologies</h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             {groups.map((g, i) => (
               <motion.div
                 key={g.label}
-                initial={{ opacity: 0 }}
-                animate={inView ? { opacity: 1 } : {}}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="card-hover p-5"
               >
-                <p className="text-xs font-medium text-foreground mb-2">{g.label}</p>
+                <p className="text-xs font-semibold text-foreground mb-3 tracking-wide uppercase">
+                  {g.label}
+                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {g.items.map((item) => (
                     <span key={item} className="tag">{item}</span>
