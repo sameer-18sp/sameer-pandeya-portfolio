@@ -1,4 +1,4 @@
-import { Github, Linkedin, Instagram, Youtube, Mail } from "lucide-react";
+import { Github, Linkedin, Youtube, Instagram, Mail } from "lucide-react";
 
 const socials = [
   { href: "mailto:pandeyasameer4@gmail.com", icon: Mail, label: "Email" },
@@ -10,15 +10,11 @@ const socials = [
 
 const Footer = () => (
   <footer className="border-t border-border py-8">
-    <div className="container mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div>
-        <p className="font-display font-bold gradient-text">Sameer Pandeya</p>
-        <p className="text-xs text-muted-foreground mt-0.5">
-          SAP STAR Scholar · M.Tech @ BITS Pilani
-        </p>
-      </div>
-
-      <div className="flex items-center gap-4">
+    <div className="max-w-2xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p className="text-xs text-muted-foreground">
+        © {new Date().getFullYear()} Sameer Pandeya
+      </p>
+      <div className="flex items-center gap-5">
         {socials.map(({ href, icon: Icon, label }) => (
           <a
             key={label}
@@ -28,14 +24,10 @@ const Footer = () => (
             aria-label={label}
             className="text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Icon size={17} />
+            <Icon size={15} />
           </a>
         ))}
       </div>
-
-      <p className="text-xs text-muted-foreground">
-        © {new Date().getFullYear()} Sameer Pandeya
-      </p>
     </div>
   </footer>
 );

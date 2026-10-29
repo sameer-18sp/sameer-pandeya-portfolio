@@ -2,24 +2,26 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Experience from "@/components/Experience";
-import Skills from "@/components/Skills";
 import FeaturedProject from "@/components/FeaturedProject";
+import Skills from "@/components/Skills";
+import Travel from "@/components/Travel";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
-const Index = () => {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
+const Index = () => (
+  <div className="min-h-screen bg-background text-foreground">
+    <Navbar />
+    <main>
       <Hero />
       <About />
       <Experience />
-      <Skills />
       <FeaturedProject />
+      <Skills />
+      <Travel />
       <Contact />
-      <Footer />
-    </div>
-  );
-};
+    </main>
+    <Footer />
+  </div>
+);
 
 export default Index;
