@@ -5,8 +5,8 @@ const items = [
   {
     role: "STAR Scholar",
     org: "SAP Labs India",
-    period: "2025 – Present",
-    type: "Full-time",
+    period: "2026 – Present",
+    type: "STAR Scholar",
     description:
       "Working in the STAR Scholar program — a competitive graduate track combining real enterprise software development with structured mentorship. Building and contributing to SAP's enterprise technology stack.",
     tags: ["Enterprise Software", "SAP Technologies", "Full-time"],
@@ -14,7 +14,7 @@ const items = [
   {
     role: "M.Tech, Software Engineering",
     org: "BITS Pilani",
-    period: "2025 – Present",
+    period: "2026 – Present",
     type: "Parallel",
     description:
       "Pursuing a master's degree alongside work. Deepening expertise in software architecture, distributed systems, and algorithms at one of India's most respected institutions.",
@@ -23,8 +23,8 @@ const items = [
   {
     role: "B.E., Computer Science Engineering",
     org: "CMR Institute of Technology, Bengaluru · VTU",
-    period: "2020 – 2024",
-    type: "CGPA 9.001",
+    period: "2022 – 2026",
+    type: "CGPA 9.01",
     description:
       "Graduated First Class with Distinction. Built a strong foundation in algorithms, AI/ML, and full-stack development. Final project: AgroCare AI — an AI-powered crop disease detection system.",
     tags: ["AI & ML", "Full Stack", "First Class Distinction"],
