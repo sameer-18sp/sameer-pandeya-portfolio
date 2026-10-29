@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -17,84 +17,87 @@ const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const handleClick = (href: string) => {
+  const scrollTo = (href: string) => {
     setMobileOpen(false);
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6 }}
+    <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "nav-blur border-b border-border/50 shadow-sm" : ""
+        scrolled ? "nav-blur border-b border-border shadow-sm" : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+        {/* Logo */}
         <button
-          onClick={() => handleClick("#hero")}
-          className="text-xl font-display font-bold glow-text"
+          onClick={() => scrollTo("#hero")}
+          className="font-display font-bold text-lg tracking-tight gradient-text"
         >
-          SP
+          Sameer Pandeya
         </button>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Desktop links */}
+        <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((l) => (
             <button
               key={l.href}
-              onClick={() => handleClick(l.href)}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary after:transition-all after:duration-300 hover:after:w-full"
+              onClick={() => scrollTo(l.href)}
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
               {l.label}
             </button>
           ))}
-        </div>
+        </nav>
 
+        {/* Right actions */}
         <div className="flex items-center gap-2">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-300"
             aria-label="Toggle theme"
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
           >
-            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
           </button>
           <button
-            className="md:hidden text-foreground p-1"
+            className="md:hidden p-2 text-foreground"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Menu"
           >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden nav-blur border-b border-border/50"
-        >
-          <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-            {navLinks.map((l) => (
-              <button
-                key={l.href}
-                onClick={() => handleClick(l.href)}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
-              >
-                {l.label}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden nav-blur border-b border-border overflow-hidden"
+          >
+            <div className="container mx-auto px-6 py-5 flex flex-col gap-5">
+              {navLinks.map((l) => (
+                <button
+                  key={l.href}
+                  onClick={() => scrollTo(l.href)}
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors text-left"
+                >
+                  {l.label}
+                </button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </header>
   );
 };
 

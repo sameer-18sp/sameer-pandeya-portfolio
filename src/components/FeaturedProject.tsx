@@ -1,98 +1,137 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, Github, Sparkles } from "lucide-react";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 
-const techStack = ["Python", "TensorFlow", "Keras", "CNN", "Computer Vision", "React.js", "Node.js", "MongoDB"];
+const techStack = [
+  "Python", "TensorFlow", "Keras", "CNN",
+  "Computer Vision", "React.js", "Node.js", "MongoDB",
+];
 
 const FeaturedProject = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="projects" className="py-24 relative">
-      <div className="absolute inset-0 featured-gradient" />
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section id="projects" className="py-28 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <div className="flex items-center gap-2 mb-3">
-            <Sparkles size={16} className="text-primary" />
-            <p className="text-primary text-sm font-medium tracking-widest uppercase">Featured Project</p>
-          </div>
-          <h2 className="text-3xl md:text-4xl font-display font-bold">
-            <span className="glow-text">AgroCare AI</span>
+          <p className="section-eyebrow">
+            <span className="font-mono text-primary">04</span> Projects
+          </p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
+            Featured Work
           </h2>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="glass-card p-8 md:p-12 glow-border"
+          transition={{ duration: 0.7, delay: 0.1 }}
+          className="card overflow-hidden"
         >
-          <div className="grid md:grid-cols-2 gap-10">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-display font-bold text-foreground">
-                AI-Based Agriculture Disease Detection & Control System
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                AgroCare AI leverages Convolutional Neural Networks (CNN) to analyze images of crop
-                leaves and accurately detect diseases in real-time. Farmers simply upload a photo of an
-                affected plant and receive an instant diagnosis along with actionable treatment
-                recommendations.
-              </p>
-              <div>
-                <h4 className="text-sm font-semibold text-foreground mb-2">Problem Solved</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Crop diseases cause billions in agricultural losses annually. Early detection is
-                  critical, but most farmers lack access to expert diagnosis. AgroCare AI democratizes
-                  agricultural expertise through accessible AI technology.
+          {/* Top accent bar */}
+          <div className="h-1 w-full bg-gradient-to-r from-primary via-secondary to-primary" />
+
+          <div className="grid md:grid-cols-[1fr_1.3fr]">
+            {/* Left — Visual accent panel */}
+            <div className="relative bg-muted border-r border-border flex items-center justify-center p-12 min-h-[280px]">
+              {/* Large faint text as background graphic */}
+              <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
+                <p
+                  className="font-display font-black text-foreground/[0.04] select-none leading-none text-center"
+                  style={{ fontSize: "clamp(3rem, 8vw, 6rem)" }}
+                >
+                  AgroCare<br />AI
                 </p>
               </div>
-              <div>
-                <h4 className="text-sm font-semibold text-foreground mb-2">Impact & Roadmap</h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  Plans include drone integration for large-scale field scanning, multi-language support
-                  for regional farmers, and expansion to livestock disease detection.
-                </p>
+              {/* Centered badge */}
+              <div className="relative z-10 text-center">
+                <div className="w-16 h-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">🌿</span>
+                </div>
+                <p className="font-display font-bold text-foreground text-lg">AgroCare AI</p>
+                <p className="text-muted-foreground text-xs mt-1">Agriculture · AI · Computer Vision</p>
               </div>
             </div>
 
-            <div className="flex flex-col justify-between gap-6">
-              <div>
-                <h4 className="text-sm font-semibold text-foreground mb-3">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.map((tech) => (
-                    <span key={tech} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
+            {/* Right — Details */}
+            <div className="p-8 md:p-10 flex flex-col justify-between gap-8">
+              <div className="space-y-4">
+                <div>
+                  <span className="tag-accent mb-3 inline-block">Featured Project</span>
+                  <h3 className="font-display font-bold text-xl text-foreground leading-snug">
+                    AI-Based Agriculture Disease Detection &amp; Control System
+                  </h3>
+                </div>
+
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  AgroCare AI uses Convolutional Neural Networks to analyze crop leaf images and
+                  detect diseases in real-time. Farmers upload a photo and get instant diagnosis
+                  with actionable treatment recommendations — democratizing agricultural expertise.
+                </p>
+
+                <div>
+                  <p className="text-xs font-semibold text-foreground mb-2">Impact</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    Crop diseases cause billions in annual losses. Early, accessible diagnosis is
+                    critical. Roadmap: drone integration, multi-language support, livestock detection.
+                  </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://agro-care-ai-final.vercel.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
-                >
-                  Live Demo <ExternalLink size={16} />
-                </a>
-                <a
-                  href="https://github.com/sameer-18sp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-                >
-                  <Github size={16} /> Code
-                </a>
+              <div>
+                <p className="text-xs font-semibold text-foreground mb-3">Tech Stack</p>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {techStack.map((t) => (
+                    <span key={t} className="tag-accent">{t}</span>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  <a
+                    href="https://agro-care-ai-final.vercel.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary"
+                  >
+                    Live Demo <ExternalLink size={14} />
+                  </a>
+                  <a
+                    href="https://github.com/sameer-18sp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline"
+                  >
+                    <Github size={14} /> Source Code
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+        </motion.div>
+
+        {/* More projects teaser */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-8 text-center"
+        >
+          <a
+            href="https://github.com/sameer-18sp"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            See more on GitHub <ArrowUpRight size={14} />
+          </a>
         </motion.div>
       </div>
     </section>

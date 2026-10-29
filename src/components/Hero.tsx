@@ -1,133 +1,161 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Download, Github, Linkedin, MapPin } from "lucide-react";
 import profilePhoto from "@/assets/sameer-profile.jpg";
+
+const stagger = {
+  animate: { transition: { staggerChildren: 0.1 } },
+};
+
+const fadeUp = {
+  initial: { opacity: 0, y: 24 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+};
+
+const stats = [
+  { value: "9.001", label: "CGPA" },
+  { value: "SAP", label: "STAR Scholar" },
+  { value: "BITS", label: "M.Tech SE" },
+];
 
 const Hero = () => {
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <div className="absolute inset-0 gradient-bg" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-primary/5 blur-[120px] animate-pulse_glow" />
+    <section
+      id="hero"
+      className="min-h-screen flex items-center pt-20 pb-16 relative overflow-hidden"
+    >
+      {/* Subtle background dot grid */}
       <div
-        className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-secondary/5 blur-[100px] animate-pulse_glow"
-        style={{ animationDelay: "1.5s" }}
-      />
-
-      <div
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.025]"
         style={{
-          backgroundImage:
-            "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
+          backgroundImage: "radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-6">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-16">
-          {/* Text */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="flex-1 text-center md:text-left"
-          >
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.2 }}
-              className="text-primary text-sm font-medium tracking-widest uppercase mb-6"
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-12 lg:gap-20 items-center">
+
+          {/* Left — Text */}
+          <motion.div variants={stagger} initial="initial" animate="animate">
+
+            {/* Location badge */}
+            <motion.div variants={fadeUp} className="flex items-center gap-1.5 mb-8">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border bg-muted text-xs font-medium text-muted-foreground">
+                <MapPin size={11} /> Bengaluru, India
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-primary/30 bg-primary/5 text-xs font-medium text-primary">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse inline-block" />
+                Open to opportunities
+              </span>
+            </motion.div>
+
+            {/* Name */}
+            <motion.h1
+              variants={fadeUp}
+              className="font-display font-bold leading-[0.95] tracking-tight mb-6 text-foreground"
+              style={{ fontSize: "clamp(3rem, 8vw, 6.5rem)" }}
             >
-              Welcome to my portfolio
+              Sameer<br />
+              <span className="gradient-text">Pandeya.</span>
+            </motion.h1>
+
+            {/* Role */}
+            <motion.p
+              variants={fadeUp}
+              className="text-lg sm:text-xl text-muted-foreground font-medium mb-2"
+            >
+              SAP STAR Scholar · M.Tech @ BITS Pilani
+            </motion.p>
+            <motion.p
+              variants={fadeUp}
+              className="text-base text-muted-foreground mb-10 max-w-lg"
+            >
+              AI &amp; Full Stack Developer — building intelligent, enterprise-grade software.
             </motion.p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold leading-tight mb-4">
-              Hi, I'm{" "}
-              <span className="glow-text">Sameer Pandeya</span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-muted-foreground font-semibold mb-2">
-              SAP STAR Scholar &middot; M.Tech @ BITS Pilani
-            </p>
-            <p className="text-base sm:text-lg text-muted-foreground font-light mb-10 max-w-2xl">
-              AI &amp; Full Stack Developer — Building Intelligent, Scalable Solutions
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            {/* CTAs */}
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mb-12">
               <button
                 onClick={() => document.querySelector("#projects")?.scrollIntoView({ behavior: "smooth" })}
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25"
+                className="btn-primary"
               >
-                View Projects
-                <ArrowDown size={16} />
+                View Projects <ArrowRight size={15} />
               </button>
-              <a
-                href="#"
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-lg border border-border text-foreground font-medium hover:border-primary/50 hover:bg-primary/5 transition-all duration-300"
-              >
-                <Download size={16} />
-                Download Resume
+              <a href="#" className="btn-outline">
+                <Download size={15} /> Resume
               </a>
-            </div>
-
-            <div className="flex items-center gap-5 mt-8 justify-center md:justify-start">
               <a
                 href="https://github.com/sameer-18sp"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="btn-outline"
                 aria-label="GitHub"
               >
-                <Github size={20} />
+                <Github size={15} />
               </a>
               <a
                 href="https://www.linkedin.com/in/sameer-sp18"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground transition-colors"
+                className="btn-outline"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={20} />
+                <Linkedin size={15} />
               </a>
-            </div>
+            </motion.div>
+
+            {/* Stats strip */}
+            <motion.div
+              variants={fadeUp}
+              className="flex items-center gap-6 pt-8 border-t border-border"
+            >
+              {stats.map((s, i) => (
+                <div key={s.label} className="flex items-center gap-6">
+                  {i > 0 && <div className="stat-divider" />}
+                  <div>
+                    <p className="font-display font-bold text-xl text-foreground">{s.value}</p>
+                    <p className="text-xs text-muted-foreground mt-0.5">{s.label}</p>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
 
-          {/* Profile photo */}
+          {/* Right — Rectangular photo */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex-shrink-0"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="hidden lg:block"
           >
-            <div className="relative group">
-              <div className="absolute -inset-6 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-700" />
-              <div className="relative w-56 h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 rounded-full p-[3px] bg-gradient-to-br from-primary via-secondary to-primary animate-float">
-                <div className="w-full h-full rounded-full overflow-hidden bg-card group-hover:scale-[1.02] transition-transform duration-500 ease-out">
-                  <img
-                    src={profilePhoto}
-                    alt="Sameer Pandeya"
-                    className="w-full h-full object-cover"
-                    loading="eager"
-                  />
+            <div className="relative">
+              {/* Accent block behind photo */}
+              <div className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl bg-primary/15" />
+
+              {/* Photo frame */}
+              <div className="relative w-72 h-[420px] rounded-2xl overflow-hidden border border-border shadow-xl">
+                <img
+                  src={profilePhoto}
+                  alt="Sameer Pandeya"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                {/* Overlay card at bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                  <p className="text-white font-display font-semibold text-sm">Sameer Pandeya</p>
+                  <p className="text-white/70 text-xs mt-0.5">AI &amp; Full Stack Developer</p>
                 </div>
               </div>
-              <div className="absolute -top-2 -right-2 w-3 h-3 rounded-full bg-primary animate-pulse_glow" />
-              <div
-                className="absolute -bottom-1 -left-1 w-2 h-2 rounded-full bg-secondary animate-pulse_glow"
-                style={{ animationDelay: "1.5s" }}
-              />
+
+              {/* Floating badge top-right */}
+              <div className="absolute -top-3 -right-3 bg-card border border-border rounded-xl px-3 py-2 shadow-lg">
+                <p className="text-xs font-display font-bold text-primary">SAP</p>
+                <p className="text-[10px] text-muted-foreground">STAR Scholar</p>
+              </div>
             </div>
           </motion.div>
         </div>
       </div>
-
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center pt-2">
-          <div className="w-1 h-2 rounded-full bg-primary" />
-        </div>
-      </motion.div>
     </section>
   );
 };

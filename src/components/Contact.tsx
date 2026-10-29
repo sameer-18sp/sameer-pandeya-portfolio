@@ -1,139 +1,135 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Mail, Linkedin, Github, Send, Instagram, Youtube } from "lucide-react";
+import { Mail, Linkedin, Github, Instagram, Youtube, ArrowUpRight, Send } from "lucide-react";
 
-const socialLinks = [
-  {
-    href: "mailto:pandeyasameer4@gmail.com",
-    icon: Mail,
-    label: "pandeyasameer4@gmail.com",
-    hoverColor: "group-hover:text-red-500",
-  },
-  {
-    href: "https://www.linkedin.com/in/sameer-sp18",
-    icon: Linkedin,
-    label: "linkedin.com/in/sameer-sp18",
-    hoverColor: "group-hover:text-blue-500",
-  },
-  {
-    href: "https://github.com/sameer-18sp",
-    icon: Github,
-    label: "github.com/sameer-18sp",
-    hoverColor: "group-hover:text-foreground",
-  },
-  {
-    href: "https://www.instagram.com/sameerpandeya_sp1",
-    icon: Instagram,
-    label: "@sameerpandeya_sp1",
-    hoverColor: "group-hover:text-pink-500",
-  },
-  {
-    href: "https://www.youtube.com/@WanderingNepali",
-    icon: Youtube,
-    label: "Wandering Nepali",
-    hoverColor: "group-hover:text-red-600",
-  },
+const socials = [
+  { href: "https://www.linkedin.com/in/sameer-sp18", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://github.com/sameer-18sp", icon: Github, label: "GitHub" },
+  { href: "https://www.instagram.com/sameerpandeya_sp1", icon: Instagram, label: "Instagram" },
+  { href: "https://www.youtube.com/@WanderingNepali", icon: Youtube, label: "YouTube" },
 ];
 
 const Contact = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [sent, setSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setForm({ name: "", email: "", message: "" });
-    }, 3000);
+    setSent(true);
+    setTimeout(() => { setSent(false); setForm({ name: "", email: "", message: "" }); }, 3000);
   };
 
   return (
-    <section id="contact" className="py-24 relative">
-      <div className="absolute inset-0 section-gradient" />
-      <div className="container mx-auto px-6 relative z-10" ref={ref}>
+    <section id="contact" className="py-28 relative">
+      <div className="absolute top-0 left-0 right-0 h-px bg-border" />
+
+      <div className="container mx-auto px-6" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="mb-16 text-center"
+          className="mb-16"
         >
-          <p className="text-primary text-sm font-medium tracking-widest uppercase mb-3">Contact</p>
-          <h2 className="text-3xl md:text-4xl font-display font-bold">
-            Let's <span className="glow-text">connect</span>
-          </h2>
-          <p className="text-muted-foreground mt-4 max-w-md mx-auto text-sm">
-            Open to collaborations, opportunities, and interesting conversations about tech.
+          <p className="section-eyebrow">
+            <span className="font-mono text-primary">05</span> Contact
           </p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl text-foreground">
+            Let's Work Together
+          </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
-          {/* Social links */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="space-y-3"
+        {/* Large email CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-16"
+        >
+          <p className="text-muted-foreground text-sm mb-3">Drop me a line</p>
+          <a
+            href="mailto:pandeyasameer4@gmail.com"
+            className="inline-flex items-center gap-3 font-display font-bold text-foreground hover:text-primary transition-colors group"
+            style={{ fontSize: "clamp(1.25rem, 3vw, 2rem)" }}
           >
-            {socialLinks.map((link, i) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                className={`flex items-center gap-3 text-muted-foreground transition-colors group ${link.hoverColor}`}
-              >
-                <div className="w-10 h-10 rounded-lg glass-card flex items-center justify-center group-hover:border-primary/30 transition-all flex-shrink-0">
-                  <link.icon size={18} />
-                </div>
-                <span className="text-sm">{link.label}</span>
-              </motion.a>
-            ))}
+            pandeyasameer4@gmail.com
+            <ArrowUpRight
+              size={28}
+              className="opacity-40 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all"
+            />
+          </a>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-12 items-start">
+
+          {/* Left — Socials + info */}
+          <motion.div
+            initial={{ opacity: 0, x: -24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.15 }}
+          >
+            <p className="text-muted-foreground text-sm mb-6 max-w-sm leading-relaxed">
+              Open to collaborations, full-time opportunities, freelance projects, and interesting
+              conversations about tech, AI, or travel.
+            </p>
+
+            <div className="flex items-center gap-3">
+              {socials.map(({ href, icon: Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-10 h-10 rounded-lg card flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary/40 transition-all"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
           </motion.div>
 
-          {/* Contact form */}
+          {/* Right — Form */}
           <motion.form
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             onSubmit={handleSubmit}
-            className="space-y-4"
+            className="space-y-3"
           >
-            <input
-              type="text"
-              placeholder="Your Name"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all duration-300"
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all duration-300"
-            />
+            <div className="grid grid-cols-2 gap-3">
+              <input
+                type="text"
+                placeholder="Your Name"
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                className="px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all"
+              />
+            </div>
             <textarea
-              placeholder="Your Message"
+              placeholder="Tell me about your project or idea..."
               required
-              rows={5}
+              rows={4}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all duration-300 resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-muted border border-border text-foreground placeholder:text-muted-foreground text-sm glow-input transition-all resize-none"
             />
             <button
               type="submit"
-              disabled={submitted}
-              className="inline-flex items-center gap-2 px-8 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all duration-300 hover:shadow-lg hover:shadow-primary/25 w-full justify-center disabled:opacity-70"
+              disabled={sent}
+              className="btn-primary w-full justify-center disabled:opacity-60"
             >
-              {submitted ? "Message Sent!" : <><Send size={16} /> Send Message</>}
+              {sent ? "Message Sent!" : <><Send size={14} /> Send Message</>}
             </button>
           </motion.form>
         </div>
